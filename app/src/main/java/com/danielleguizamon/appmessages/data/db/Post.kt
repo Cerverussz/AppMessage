@@ -1,11 +1,14 @@
 package com.danielleguizamon.appmessages.data.db
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
 @Entity(tableName = "post")
 data class Post(
-    @Json(name = "id")
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "id")
     @field:Json(name = "id")
-    val id: Int = 0
+    var id: Int = 0
 )

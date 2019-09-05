@@ -24,6 +24,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sumTwoNumbers(x: Int, y: Int) {
-        Log.d("--- Sum", (x + y).toString())
+       // Log.d("--- Sum", (x + y).toString())
     }
 }
