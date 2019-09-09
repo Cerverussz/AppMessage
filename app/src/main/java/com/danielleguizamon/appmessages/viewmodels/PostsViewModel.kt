@@ -15,12 +15,14 @@ class PostsViewModel(private val postsRepository: PostsRepository) : ViewModel()
     private val postsListAPIMutableLiveData: MutableLiveData<Event<UIState>> = MutableLiveData()
     private val isUsersListAPIMutableLiveData: MutableLiveData<UIState> = MutableLiveData()
     private val deleteAllPostDBMutableLiveData: MutableLiveData<UIState> = MutableLiveData()
+    private val deletePostDBMutableLiveData: MutableLiveData<UIState> = MutableLiveData()
 
 
     fun getPostsListDBLiveData(): LiveData<UIState> = postsListDBMutableLiveData
     fun getPostsListAPILiveData(): LiveData<Event<UIState>> = postsListAPIMutableLiveData
     fun isUsersListAPIMutableLiveData(): LiveData<UIState> = isUsersListAPIMutableLiveData
     fun deleteAllPostDBLiveData(): LiveData<UIState> = deleteAllPostDBMutableLiveData
+    fun deletePostDBLiveData(): LiveData<UIState> = deletePostDBMutableLiveData
 
     private val subscriptions = CompositeDisposable()
 
@@ -94,15 +96,38 @@ class PostsViewModel(private val postsRepository: PostsRepository) : ViewModel()
 
     fun deleteAllPost() {
         subscriptions.add(
-            postsRepository.deleteAllPost().doOnSubscribe {
-                deleteAllPostDBMutableLiveData.postValue(UIState.Loading)
-            }.subscribeOn(Schedulers.io())
+            postsRepository.deleteAllPost()
+                .doOnSubscribe {
+                    deleteAllPostDBMutableLiveData.postValue(UIState.Loading)
+                }.subscribeOn(Schedulers.io())
                 .subscribeBy(
                     onComplete = {
                         deleteAllPostDBMutableLiveData.postValue(UIState.Success(true))
                     },
                     onError = {
                         deleteAllPostDBMutableLiveData.postValue(
+                            UIState.Error(
+                                it.message
+                                    ?: "Error"
+                            )
+                        )
+                    }
+                )
+        )
+    }
+
+    fun deletePost(id: Int) {
+        subscriptions.add(
+            postsRepository.deletePost(id)
+                .doOnSubscribe {
+                    deletePostDBMutableLiveData.postValue(UIState.Loading)
+                }.subscribeOn(Schedulers.io())
+                .subscribeBy(
+                    onComplete = {
+                        deletePostDBMutableLiveData.postValue(UIState.Success(true))
+                    },
+                    onError = {
+                        deletePostDBMutableLiveData.postValue(
                             UIState.Error(
                                 it.message
                                     ?: "Error"

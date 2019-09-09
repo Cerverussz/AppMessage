@@ -70,6 +70,8 @@ class PostsRepositoryImp(private val serviceApi: ApiService, private val postsDa
 
     override fun deleteAllPost(): Completable = postsDao.deleteAllPost()
 
+    override fun deletePost(id: Int): Completable = postsDao.deletePost(id)
+
     companion object {
         const val TAG = "PostsRepositoryImp"
     }

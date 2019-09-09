@@ -22,9 +22,8 @@ class PostsAdapter(val clickClosure: (Post) -> Unit) :
         notifyDataSetChanged()
     }
 
-    fun removeAt(position: Int) {
-        dataItems.removeAt(position)
-        notifyItemRemoved(position)
+    fun getData(): MutableList<Post> {
+        return dataItems
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.empty_view.*
 import kotlinx.android.synthetic.main.fragment_posts.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@Suppress("UNCHECKED_CAST")
 class PostsFragment : Fragment() {
 
     private val postsViewModel: PostsViewModel by viewModel()
@@ -66,12 +67,19 @@ class PostsFragment : Fragment() {
 
         val swipeHandler = object : SwipeToDeleteCallback(activity!!) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val adapter = postsListRecyclerView.adapter as PostsAdapter
-                adapter.removeAt(viewHolder.adapterPosition)
+                deletePost(viewHolder.adapterPosition)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(postsListRecyclerView)
+    }
+
+    private fun deletePost(position: Int) {
+        postsAdapter.getData().forEachIndexed { index, post ->
+            if (index == position) {
+                postsViewModel.deletePost(post.id)
+            }
+        }
     }
 
     private fun setupToolbar() {
@@ -88,7 +96,7 @@ class PostsFragment : Fragment() {
                 }
 
                 R.id.menu_main_remove -> {
-                    //postsViewModel.deleteAllPost()
+                    postsViewModel.deleteAllPost()
                 }
             }
             true
@@ -155,7 +163,7 @@ class PostsFragment : Fragment() {
                 }
                 is UIState.Success<*> -> {
                     val data = status.data as Boolean
-                    Log.i(TAG, "--- Insert Users")
+                    Log.i(TAG, "--- Insert Users $data")
                 }
                 is UIState.Error -> {
                     Log.i(TAG, "--- ${status.message}")
@@ -170,7 +178,22 @@ class PostsFragment : Fragment() {
                 }
                 is UIState.Success<*> -> {
                     val data = status.data as Boolean
-                    postsAdapter.setData(mutableListOf())
+                    Log.i(TAG, "--- Success")
+                }
+                is UIState.Error -> {
+                    Log.i(TAG, "--- ${status.message}")
+                }
+            }
+        })
+
+        postsViewModel.deletePostDBLiveData().observe(this, Observer { status ->
+            when (status) {
+                is UIState.Loading -> {
+                    Log.i(TAG, "--- Loading...")
+                }
+                is UIState.Success<*> -> {
+                    val data = status.data as Boolean
+                    Log.i(TAG, "--- Success Delete")
                 }
                 is UIState.Error -> {
                     Log.i(TAG, "--- ${status.message}")

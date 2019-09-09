@@ -36,5 +36,6 @@ interface PostsDao {
     @Query("DELETE FROM post")
     fun deleteAllPost(): Completable
 
-
+    @Query("DELETE FROM post WHERE id = :id")
+    fun deletePost(id: Int): Completable
 }

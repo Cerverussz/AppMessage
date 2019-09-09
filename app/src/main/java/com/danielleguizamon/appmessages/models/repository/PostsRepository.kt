@@ -29,4 +29,6 @@ interface PostsRepository {
     fun getAllFavoritePost(): Flowable<List<Post>>
 
     fun deleteAllPost(): Completable
+
+    fun deletePost(id: Int): Completable
 }
