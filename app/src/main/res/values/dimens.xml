@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="margin">10dp</dimen>
+    <dimen name="padding">10dp</dimen>
+    <dimen name="large_padding">20dp</dimen>
+
+    <dimen name="xsmall_letter">9sp</dimen>
+    <dimen name="small_letter">12sp</dimen>
+    <dimen name="medium_letter">14sp</dimen>
+    <dimen name="large_letter">16sp</dimen>
+    <dimen name="xlarge_letter">18sp</dimen>
+
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_vertical_margin">16dp</dimen>
+    <dimen name="row_padding_vertical">10dp</dimen>
+
+</resources>

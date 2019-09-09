@@ -11,15 +11,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        while (true) {
-            try {
-                Thread.sleep(1000)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            }
-
-            sumTwoNumbers(50, 30)
-        }
+//        while (true) {
+//            try {
+//                Thread.sleep(1000)
+//            } catch (e: InterruptedException) {
+//                e.printStackTrace()
+//            }
+//
+//            sumTwoNumbers(50, 30)
+//        }
 
     }
 

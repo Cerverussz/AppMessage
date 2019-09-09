@@ -1,7 +1,7 @@
 package com.danielleguizamon.appmessages.di
 
-import co.com.ceiba.mobile.pruebadeingreso.core.Network
-import com.danielleguizamon.appmessages.data.remote.Api.ApiService
+import com.danielleguizamon.appmessages.core.Network
+import com.danielleguizamon.appmessages.data.remote.api.ApiService
 import org.koin.dsl.module
 
 val networkModule = module {

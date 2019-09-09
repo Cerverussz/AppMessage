@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.core
+package com.danielleguizamon.appmessages.core
 
 import com.danielleguizamon.appmessages.rest.Endpoints.URL_BASE
 import com.squareup.moshi.Moshi

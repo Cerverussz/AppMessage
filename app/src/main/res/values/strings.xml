@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">AppMessages</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_favorite">Favorite Post</string>
+    <string name="title_refresh">Refresh Post</string>
+    <string name="title_delete">Delete All Post</string>
+    <string name="title_cancel_button">Cancel</string>
+    <string name="title_ok_button">OK</string>
+    <string name="title_alert_dialog">Warning!!!</string>
+    <string name="message_delete_alert_dialog">Are you sure to delete all Posts?</string>
+
+    <string name="message_connection_error">Verify your internet connection please</string>
+    <string name="message_loading">Loading</string>
+    <string name="message_list_empty">List Empty</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

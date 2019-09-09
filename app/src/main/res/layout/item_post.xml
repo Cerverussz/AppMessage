@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="end"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titlePostTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingHorizontal="@dimen/padding"
+            android:textColor="@color/gray_4B4949"
+            android:textStyle="bold"
+            tools:text="Cur nuclear vexatum iacere peregrinationes?" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/postTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/padding"
+            android:textColor="@color/gray_959595"
+            android:textStyle="bold"
+            app:autoSizeMaxTextSize="@dimen/small_letter"
+            app:autoSizeMinTextSize="@dimen/large_letter"
+            tools:text="Cur nuclear vexatum iacere peregrinationes Detriuss experimentum, tanquam varius cobaltum.A falsis, habitio raptus abactor.?" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/favoriteCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|end"
+        android:enabled="false"
+        android:button="@drawable/check_box_selector" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/readImageView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="center|end"
+        android:layout_marginHorizontal="@dimen/padding"
+        android:background="@drawable/item_read"
+        android:visibility="visible" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
