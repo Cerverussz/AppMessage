@@ -9,12 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.danielleguizamon.appmessages.R
 import com.danielleguizamon.appmessages.data.db.entities.Post
 import com.danielleguizamon.appmessages.view.adapters.PostsAdapter
+import com.danielleguizamon.appmessages.view.widget.SwipeToDeleteCallback
 import com.danielleguizamon.appmessages.viewmodels.PostsViewModel
 import com.danielleguizamon.appmessages.viewmodels.UIState
 import kotlinx.android.synthetic.main.empty_view.*
@@ -56,9 +59,19 @@ class PostsFragment : Fragment() {
         postsAdapter.setHasStableIds(true)
         postsListRecyclerView.apply {
             layoutManager = LinearLayoutManager(activity!!, RecyclerView.VERTICAL, false)
+            addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL))
             setHasFixedSize(true)
             adapter = postsAdapter
         }
+
+        val swipeHandler = object : SwipeToDeleteCallback(activity!!) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = postsListRecyclerView.adapter as PostsAdapter
+                adapter.removeAt(viewHolder.adapterPosition)
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(swipeHandler)
+        itemTouchHelper.attachToRecyclerView(postsListRecyclerView)
     }
 
     private fun setupToolbar() {

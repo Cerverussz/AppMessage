@@ -22,6 +22,11 @@ class PostsAdapter(val clickClosure: (Post) -> Unit) :
         notifyDataSetChanged()
     }
 
+    fun removeAt(position: Int) {
+        dataItems.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_post, parent, false)
         return ViewHolder(v)
